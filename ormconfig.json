@@ -1,0 +1,12 @@
+{
+  "type": "postgres",
+  "host": "postgres",
+  "port": 5432,
+  "username": "api",
+  "password": "api",
+  "database": "api",
+  "entities": ["./dist/**/*.entity{.ts,.js}"],
+  "migrations": ["./dist/**/*.ts"],
+  "synchronize": true,
+  "logging": true
+}
