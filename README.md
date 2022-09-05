@@ -1,73 +1,66 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# **API de gerenciamento de BOOKs com autenticação JWT**
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# **Tecnologias Utilizadas**
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+> **NestJS** - possui uma arquitetura escalável baseada em módulos que permitem o reuso de código</br> > **TypeORM** - possui migrations, entities e anotations que facilitam e aceleram o desenvolvimento</br> > **PostgreSQL** - banco de dados relacional open source que mais utilizo</br> > **GraphQL** - agrega mais flexibilidade para a API e também possui apenas um endpoint</br> > **Docker** - conteinerização da aplicação</br> > **Jest** - facilitar a implementação dos testes</br>
 
-## Description
+# Como rodar a API
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Para rodar a API, primeiramente, é necessário ter o Docker, Yarn e NODE instalado em sua máquina
+- Após baixar esse repositório, abra seu editor de código e execute o comando **yarn** para baixar as depêndencias
+- Com o Docker aberto execute o comando **docker-compose up --build -V** para criar os containers
+- Com isso no seu docker deve ser criado um container com duas imagens:
+  > - Banco de dados Postgres rodando na Porta **5432**</br>
+  > - Aplicação NODE.JS rodando na Porta **3003**
 
-## Installation
+#### caso essas portas já estejam sendo utilizado altere os valores no arquivo `.env`
 
-```bash
-$ npm install
-```
+# Rodar os testes
 
-## Running the app
+- Execute o comando no terminal
+  > `yarn test`
 
-```bash
-# development
-$ npm run start
+# Documentação
 
-# watch mode
-$ npm run start:dev
+- Após o processo feito acima você pode conferir a documentação que é gerada de forma automática pelo GraphQL no endpoint
+  > `http://localhost:3003/graphql`
 
-# production mode
-$ npm run start:prod
-```
+# Verificar se o Banco de Dados está rodando
 
-## Test
+- Execute o comando no terminal para acessar o container do postgres
+  > `docker exec -it database psql api api`
 
-```bash
-# unit tests
-$ npm run test
+# Entidades da API
 
-# e2e tests
-$ npm run test:e2e
+- ACCOUNT { name, email, password }
+- AUTHOR { name, books }
+- BOOK { title, author, category, synopsis }
 
-# test coverage
-$ npm run test:cov
-```
+# Exemplos de como executar a API no Playground
 
-## Support
+#### Criar uma ACCOUNT
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+![Create-account](https://user-images.githubusercontent.com/66275588/188289343-39c36b2e-0894-4d8b-904a-1772370178a7.png)
 
-## Stay in touch
+#### Realizar Login
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+![login](https://user-images.githubusercontent.com/66275588/188289355-684c618b-df8c-401a-a5cd-549099f3245e.png)
 
-## License
+#### Criar um BOOK
 
-Nest is [MIT licensed](LICENSE).
+![criação do livro](https://user-images.githubusercontent.com/66275588/188289387-a3cd1828-a1a0-49e8-b030-0a16c8611cb2.png)
+![token para a criação do livro](https://user-images.githubusercontent.com/66275588/188289420-13734721-36b9-43f3-8acb-f320df0d6797.png)
+
+#### Listar todos os BOOKs
+
+![Listagem de todos os livreos](https://user-images.githubusercontent.com/66275588/188289412-4e101342-830a-42b9-b9bf-ca6d2a4e8918.png)
+
+#### Atualizar um BOOK
+
+![Update book](https://user-images.githubusercontent.com/66275588/188289437-d651a381-f39d-4608-b4f0-0ed2a5532466.png)
+
+#### Deletar um BOOK
+
+![deletando um livro](https://user-images.githubusercontent.com/66275588/188289445-7601622d-5f67-40b1-8cb1-fa168c46c0d0.png)
+
+- Importante ressaltar que todas as operações com os BOOKs são autenticadas
